@@ -20,22 +20,22 @@
   @apply text-black bg-red-500;
 }
 
-.sign_up_input_field {
+.devise_input_field {
   @apply bg-red-100 border-0 rounded-md drop-shadow-md;
 }
 
-.sign_up_input_field:focus {
+.devise_input_field:focus {
   @apply ring-0;
 }
 
-.sign_up_input_field:placeholder-shown {
+.devise_input_field:placeholder-shown {
   @apply ring-0 !important;
 }
 
-.sign_up_input_field:invalid {
+.devise_input_field:invalid {
   @apply ring-2 ring-red-400;
 }
 
-.sign_up_input_field:valid {
+.devise_input_field:valid {
   @apply ring-2 ring-green-400;
 }

@@ -5,17 +5,17 @@
     
     <div class="field">
       <%= f.label :first_name %>
-      <%= f.text_field :first_name, required: true, autofocus: true, placeholder: "Johnny", class: "w-full sign_up_input_field" %>
+      <%= f.text_field :first_name, required: true, autofocus: true, placeholder: "Johnny", class: "w-full devise_input_field" %>
     </div>
     
     <div class="field">
       <%= f.label :last_name %>
-      <%= f.text_field :last_name, required: true, placeholder: "Silverhand", class: "w-full sign_up_input_field" %>
+      <%= f.text_field :last_name, required: true, placeholder: "Silverhand", class: "w-full devise_input_field" %>
     </div>
 
     <div class="field col-span-2">
       <%= f.label :email %>
-      <%= f.email_field :email, autocomplete: "email", placeholder: "johnny.silverhand@arakasa.corp", class: "w-full sign_up_input_field" %>
+      <%= f.email_field :email, autocomplete: "email", placeholder: "johnny.silverhand@arakasa.corp", class: "w-full devise_input_field" %>
     </div>
 
     <div class="field">
@@ -23,12 +23,12 @@
       <% if @minimum_password_length %>
       <em class="block text-xl">(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: " ", class: "w-full sign_up_input_field focus:sign_up_input_field"  %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: " ", class: "w-full devise_input_field focus:devise_input_field"  %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: " ", class: "w-full sign_up_input_field"  %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: " ", class: "w-full devise_input_field"  %>
     </div>
 
     <div class="col-span-2">
