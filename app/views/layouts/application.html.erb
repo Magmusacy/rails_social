@@ -12,12 +12,13 @@
   </head>
 
   <body class="bg-red-400 font-sans text-lg">
-    <header>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <header class="block h-[5vh]">
+      <% if user_signed_in? %>
+        <%= render "logout" %>
+      <% end %>
     </header>
 
-    <main>
+    <main class="block h-[95vh]">
       <%= yield %>
     </main>
   </body>
