@@ -1,1 +1,6 @@
-<h1>Welcome </h1>
+<div class="col-span-2 border-2 border-black">
+    <%= render "form" %>
+    <%= turbo_frame_tag "posts", class: "flex flex-col gap-2 mt-2" do %>
+        <%= render @posts %>
+    <% end %>
+</div>

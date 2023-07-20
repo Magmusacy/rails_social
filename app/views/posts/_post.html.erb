@@ -1,0 +1,12 @@
+<div class="border-2 border-white w-full p-2 bg-red-50 rounded-md">
+    <%# There will be pfp here later %>
+    <div class="px-2">
+        <p class="text-base"><%= "#{post.author.first_name} #{post.author.last_name}" %></p>
+        <p class="text-sm text-slate-500"><%= "#{time_ago_in_words(post.created_at)} ago" %></p>
+    </div>
+    
+    <div>
+        <%= post.body %>
+    </div>
+</div>
+

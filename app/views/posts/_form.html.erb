@@ -1,0 +1,7 @@
+<%= form_with model: @post do |form| %>
+    <div class="bg-red-50 rounded-md">
+        <%= form.text_area :body, rows: "4", placeholder: "What's on your mind, #{current_user.first_name}?", class: "w-full resize-none rounded-md bg-red-50 focus:ring-0 border-0 p-3" %>
+        <hr>
+        <%= form.submit "Post", class: "bg-red-50 w-full mt-2 rounded-md p-2 hover:cursor-pointer hover:bg-red-100 focus:bg-red-200" %>
+    </div>
+<% end %>
