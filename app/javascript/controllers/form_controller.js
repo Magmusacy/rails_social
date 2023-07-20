@@ -7,4 +7,13 @@ export default class extends Controller {
   clear() {
     this.textAreaTarget.value = ""
   }
+
+  preventEmpty(event) {
+    if (this.textAreaTarget.value) {
+      return
+    } 
+    else {
+      event.preventDefault()
+    }
+  }
 }

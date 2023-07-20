@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    p @post
+
     respond_to do |format|
       if @post.save 
         format.turbo_stream
