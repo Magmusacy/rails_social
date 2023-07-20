@@ -12,13 +12,13 @@
   </head>
 
   <body class="bg-red-400 font-sans text-lg">
-    <header class="block h-[5vh]">
+    <header class="block h-[5vh] sticky top-0">
       <% if user_signed_in? %>
         <%= render "logout" %>
       <% end %>
     </header>
 
-    <main class="grid grid-cols-3 h-[95vh]">
+    <main class="grid grid-cols-[repeat(3,_1fr)_repeat(4,_150px)_repeat(3,_1fr)] h-[95vh]">
       <%= yield %>
     </main>
   </body>
