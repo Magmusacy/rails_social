@@ -9,7 +9,7 @@
         <%= post.body %>
     </div>
 
-    <div style="flex">
+    <div class="flex border-t border-b border-slate-200 py-2">
         <% if post.author == current_user %>
             <%= button_to post_path(post), method: :delete, class: "flex items-center self-center px-3 py-1 rounded-full hover:bg-red-100 focus:bg-red-200" do %>
                 Remove
@@ -23,8 +23,8 @@
     </div>
 
     <%# Post ID is needed to target correct Post with comment via turbo streams %>
-    <div id="comments_<%= post.id %>" class="border-t border-slate-500 pt-2">
-        <%= render post.comments %>
+    <div id="comments_<%= post.id %>" class="divide-y border-t border-slate-400 pt-2">
+        <%= render post.comments.order(created_at: :desc) %>
     </div>
 </div>
 
