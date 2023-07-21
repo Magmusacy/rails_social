@@ -1,0 +1,26 @@
+<div class="col-span-full h-[50vh] bg-red-50 drop-shadow-md">
+    <div class="w-[900px] mx-auto h-full ">
+        <div class="h-3/5 bg-gradient-to-b from-red-50 to-slate-500 rounded-md"></div>
+        <div class="flex px-6">
+            <%= image_tag @user.profile_photo, alt: "Profile photo", class:"w-36 h-36 relative -top-8 rounded-full border-4 border-red-50" %>
+            
+            <%# User info %>
+            <div class="pl-2 pt-6">
+                <p class="font-semibold text-xl"><%= "#{@user.first_name} #{@user.last_name}" %></p>
+            </div>
+
+            <% if @user == current_user %>
+                <%= link_to edit_user_registration_path, class: "flex items-center gap-2 p-3 ml-auto self-end rounded-full hover:bg-red-100 active:bg-red-200" do %>
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Edit profile pencil</title><path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" /></svg>
+                    Edit profile
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="col-start-4 col-span-4">
+    <%= turbo_frame_tag "posts", class: "flex flex-col gap-2 mt-2" do %>
+        <%= render @user.posts %>
+    <% end %>
+</div>
