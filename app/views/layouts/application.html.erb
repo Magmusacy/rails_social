@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsSocial</title>
+    <title>Rails Social</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,13 +12,28 @@
   </head>
 
   <body class="bg-red-400 font-sans text-lg">
-    <header class="block h-[5vh] sticky top-0">
+    <header class="h-[5vh] sticky top-0 flex bg-red-300 z-10 items-center px-1">
       <% if user_signed_in? %>
-        <%= render "logout" %>
+        <%= link_to root_path, class: "h-4/5 w-[200px] rounded-lg flex items-center justify-center hover:bg-red-100 active:bg-red-50" do %>
+          <h2 class="font-bold text-3xl tracking-tight"><span class="text-red-600">Rails</span> Social</h2>
+        <% end %>
+        
+        <div class="h-full flex items-center ml-auto gap-x-2 pr-2">
+            <%# This will redirect to user profile in the future %>
+            <%= link_to false, class: "h-4/5 flex items-center gap-2 hover:bg-red-200 focus:bg-red-100 rounded-full pl-2" do %>
+              <p class="font-semibold text-xl"><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
+              <%= image_tag current_user.profile_photo, alt: "Profile photo", class: "w-10 h-10 rounded-full" %>
+            <% end %>
+            
+            <%= link_to destroy_user_session_path, class: "flex items-center gap-2 px-2 py-1 rounded-full h-4/5 text-sm hover:cursor-pointer hover:bg-red-200 active:bg-red-100", data: { "turbo-method": :delete } do %>
+                <svg class="w-5 h-5 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Log out picture</title><path d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z" /></svg>
+                Log Out
+            <% end %>
+        </div>
       <% end %>
     </header>
 
-    <main class="grid grid-cols-[repeat(3,_1fr)_repeat(4,_150px)_repeat(3,_1fr)]">
+    <main class="grid grid-cols-[repeat(3,_1fr)_repeat(4,_150px)_repeat(3,_1fr)] mt-2">
       <%= yield %>
     </main>
   </body>
