@@ -1,6 +1,6 @@
 <div id="comment_<%= comment.id %>" class="py-2">
     <div class="flex items-center gap-2 drop-shadow-md">
-        <%= image_tag comment.post.author.profile_photo, alt: "Profile photo", class: "w-6 h-6 rounded-full" %>
+        <%= image_tag comment.author.profile_photo, alt: "Profile photo", class: "w-6 h-6 rounded-full" %>
         <p class="text-sm font-semibold"><%= "#{comment.author.first_name} #{comment.author.last_name}" %></p>
     </div>
 
