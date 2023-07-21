@@ -1,0 +1,7 @@
+<%= form_with model: Comment.new, data: { controller: "form", action: "turbo:submit-end->form#clear" }, class: "flex" do |form| %>
+    <%= form.text_area :body, rows: 2, placeholder: "Write a comment", data: { "form-target": "textArea" }, class: "w-full resize-none rounded-md bg-red-50 focus:ring-0 border-0 p-3" %>
+    <%= form.hidden_field :post_id, value: post.id %>
+    <%= button_tag data: { action: "form#preventEmpty" }, class: "w-16 self-center p-3 rounded-full hover:bg-red-100 focus:bg-red-200" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>send-variant-outline</title><path d="M3 20V4L22 12M5 17L16.85 12L5 7V10.5L11 12L5 13.5M5 17V7 13.5Z" /></svg>
+    <% end %>
+<% end %>

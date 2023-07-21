@@ -1,12 +1,21 @@
-<div class="border-2 border-white w-full p-2 bg-red-50 rounded-md">
+<div class="flex flex-col gap-2 border-2 border-white w-full p-2 bg-red-50 rounded-md">
     <%# There will be pfp here later %>
     <div class="px-2">
-        <p class="text-base"><%= "#{post.author.first_name} #{post.author.last_name}" %></p>
+        <p class="text-base font-semibold"><%= "#{post.author.first_name} #{post.author.last_name}" %></p>
         <p class="text-sm text-slate-500"><%= "#{time_ago_in_words(post.created_at)} ago" %></p>
     </div>
     
     <div>
         <%= post.body %>
+    </div>
+    
+    <div>
+        <%= render "comments/comment_form", post: post %>
+    </div>
+
+    <%# Post ID is needed to target correct Post with comment via turbo streams %>
+    <div id="comments_<%= post.id %>" class="border-t border-slate-500 pt-2">
+        <%= render post.comments %>
     </div>
 </div>
 

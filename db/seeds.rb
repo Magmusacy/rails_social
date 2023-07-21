@@ -7,8 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Destroy only these accounts
-TEST_ACCOUNTS = User.where(email: ["judy@alvarez.com", "panam@palmer.com", "jackie@welles.com"])
-TEST_ACCOUNTS.destroy_all
+#TEST_ACCOUNTS = User.where(email: ["judy@alvarez.com", "panam@palmer.com", "jackie@welles.com"])
+#TEST_ACCOUNTS.destroy_all
+User.destroy_all
 
 USERS = [User.create(first_name: "Judy", last_name: "Alvarez", email: "judy@alvarez.com", password: "123456", password_confirmation: "123456"),
          User.create(first_name: "Panam", last_name: "Palmer", email: "panam@palmer.com", password: "654321", password_confirmation: "654321"),
@@ -18,4 +19,9 @@ USERS = [User.create(first_name: "Judy", last_name: "Alvarez", email: "judy@alva
 USERS.each do |user|
     user.posts.create(body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.")
     user.posts.create(body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.")
+end
+
+USERS.each do |user|
+    post = user.posts.first
+    user.comments.create(body: "Lorem ipsum dolor sit amet", post: post)
 end
