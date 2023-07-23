@@ -1,0 +1,4 @@
+<%= form_with url: invitations_path, method: :post do |form| %>
+    <%= form.hidden_field :friend_id, value: friend.id %>
+    <%= form.submit "Add a friend", class: "h-full p-2 hover:bg-red-200 focus:bg-red-100 rounded-md hover:cursor-pointer" %>
+<% end %>

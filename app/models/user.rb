@@ -17,6 +17,10 @@ class User < ApplicationRecord
     user_friend_of = Invitation.where(friend_id: self.id).where(confirmed: true).pluck(:user_id)
     User.where(id: [user_friends + user_friend_of])
   end
+
+  def suggested_friends
+    User.where.not(id: friends).where.not(id: id)
+  end
   
   def profile_photo
     email_address = email.downcase

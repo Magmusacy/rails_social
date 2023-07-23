@@ -1,0 +1,15 @@
+<div id="invitation_<%= pending_invitation.id %>" class="h-20 flex items-center p-2">
+    <%= link_to pending_invitation.user, class: "h-full flex items-center gap-2 p-2 hover:bg-red-200 focus:bg-red-100 rounded-md" do %>
+        <%= image_tag pending_invitation.user.profile_photo, alt: "Profile photo", class: "w-12 h-12 rounded-full" %>
+        <p class="font-medium"><%= "#{pending_invitation.user.first_name} #{pending_invitation.user.last_name}" %></p>
+    <% end %>
+
+    <%= form_with url: invitation_path(pending_invitation), method: :patch, class: "h-full flex items-center ml-auto" do |form| %>
+        <%= form.hidden_field :inviting_user_id, value: pending_invitation.user.id %>
+        <%= form.submit "Accept", class: "h-full p-2 hover:bg-red-200 focus:bg-red-100 rounded-md hover:cursor-pointer" %>
+    <% end %>
+
+    <%= form_with model: pending_invitation, method: :delete, class: "h-full flex items-center" do |form| %>
+        <%= form.submit "Reject", class: "h-full p-2 hover:bg-red-200 focus:bg-red-100 rounded-md hover:cursor-pointer" %>
+    <% end %>
+</div>
