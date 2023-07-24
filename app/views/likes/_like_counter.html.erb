@@ -1,0 +1,3 @@
+<div id="like-counter-<%= "#{likeable.class.name.downcase}-#{likeable.id}" %>">
+    <p class="px-2"><%= pluralize(likeable.likes.count, "Like") %></p>
+</div>

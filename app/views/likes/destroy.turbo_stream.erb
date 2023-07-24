@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "like-region-#{@likeable.class.name.downcase}-#{@likeable.id}" do %>
+    <%= render "likes/like_region", likeable: @likeable %>
+<% end %>
+
+<%= turbo_stream.replace "like-counter-#{@likeable.class.name.downcase}-#{@likeable.id}" do %>
+    <%= render "likes/like_counter", likeable: @likeable %>
+<% end %>
