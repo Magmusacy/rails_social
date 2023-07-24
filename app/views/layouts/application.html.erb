@@ -20,7 +20,7 @@
         
         <div class="h-full flex items-center ml-auto gap-x-2 pr-2">
             <%# This will redirect to user profile in the future %>
-            <%= link_to false, class: "h-4/5 flex items-center gap-2 hover:bg-red-200 focus:bg-red-100 rounded-full pl-2" do %>
+            <%= link_to current_user, class: "h-4/5 flex items-center gap-2 hover:bg-red-200 focus:bg-red-100 rounded-full pl-2" do %>
               <p class="font-semibold text-xl"><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
               <%= image_tag current_user.profile_photo, alt: "Profile photo", class: "w-10 h-10 rounded-full" %>
             <% end %>
@@ -33,7 +33,7 @@
       <% end %>
     </header>
 
-    <main class="grid grid-cols-[repeat(3,_1fr)_repeat(4,_150px)_1fr_1fr_1fr] mt-2">
+    <main class="grid justify-items-center mt-2">
       <%= yield %>
     </main>
   </body>

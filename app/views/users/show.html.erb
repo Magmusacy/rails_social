@@ -1,4 +1,4 @@
-<div class="col-span-full h-[50vh] bg-red-50 drop-shadow-md">
+<div class="w-[calc(100%-1rem)] h-[50vh] bg-red-50 drop-shadow-md rounded-md">
     <div class="w-[900px] mx-auto h-full ">
         <div class="h-3/5 bg-gradient-to-b from-red-50 to-slate-500 rounded-md"></div>
         <div class="flex px-6">
@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div class="col-start-4 col-span-4">
+<div class="w-[600px]">
     <%= turbo_frame_tag "posts", class: "flex flex-col gap-2 mt-2" do %>
         <%= render @user.posts %>
     <% end %>
