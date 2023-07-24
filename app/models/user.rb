@@ -8,9 +8,9 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
   # Shows this user's pending invitations (send by others)
-  has_many :pending_invitations, -> { where(confirmed: false) }, class_name: "Invitation", foreign_key: "friend_id"
+  has_many :pending_invitations, -> { where(confirmed: false) }, class_name: "Invitation", foreign_key: "friend_id", dependent: :destroy
 
   def friends
     user_friends = Invitation.where(user_id: self.id).where(confirmed: true).pluck(:friend_id)
