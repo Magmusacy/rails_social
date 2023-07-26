@@ -1,8 +1,8 @@
 <div class="w-[600px]">
     <%= render "form" %>
-    <%= turbo_frame_tag "posts", class: "flex flex-col gap-2 mt-2" do %>
+    <div id="posts" class="flex flex-col gap-2 mt-2">
         <%= render @posts %>
-    <% end %>
+    </div>
 </div>
 
 <%= render "posts/people_region/people_region" %>
