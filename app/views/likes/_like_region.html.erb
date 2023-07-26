@@ -1,7 +1,15 @@
+<% if likeable.class.name.downcase == "post" %>
+    <% button_class = "flex items-center px-3 py-1 gap-2 rounded-full hover:bg-red-100 focus:bg-red-200" %>
+    <% icon_size = "w-6 h-6" %>
+<% elsif likeable.class.name.downcase == "comment" %>
+    <% button_class = "text-sm flex gap-2 items-center self-center px-2 py-0.5 rounded-full hover:bg-red-100 focus:bg-red-200" %>
+    <% icon_size = "w-5 h-5" %>
+<% end %>
+
 <div id="like-region-<%= "#{likeable.class.name.downcase}-#{likeable.id}" %>">
     <% if Like.like_exists?(likeable, current_user) %>
-        <%= render "likes/unlike", likeable: likeable %>
+        <%= render "likes/unlike", likeable: likeable, button_class: button_class, icon_size: icon_size %>
     <% else %>
-        <%= render "likes/like", likeable: likeable %>
+        <%= render "likes/like", likeable: likeable, button_class: button_class, icon_size: icon_size %>
     <% end %>
 </div>

@@ -1,3 +1,9 @@
+<% if likeable.class.name.downcase == "post" %>
+    <% counter_styles = "px-2" %>
+<% elsif likeable.class.name.downcase == "comment" %>
+    <% counter_styles = "text-sm px-2" %>
+<% end %>
+
 <div id="like-counter-<%= "#{likeable.class.name.downcase}-#{likeable.id}" %>">
-    <p class="px-2"><%= pluralize(likeable.likes.count, "Like") %></p>
+    <p class="<%= counter_styles %>"><%= pluralize(likeable.likes.count, "Like") %></p>
 </div>
