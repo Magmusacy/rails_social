@@ -5,5 +5,5 @@
 <% end %>
 
 <div id="like-counter-<%= "#{likeable.class.name.downcase}-#{likeable.id}" %>">
-    <p class="<%= counter_styles %>"><%= pluralize(likeable.likes.count, "Like") %></p>
+    <p class="<%= counter_styles %>"><%= pluralize(likeable.likes.length, "Like") %></p>
 </div>
