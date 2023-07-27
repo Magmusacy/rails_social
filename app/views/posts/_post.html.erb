@@ -1,6 +1,6 @@
 <div id="post_<%= post.id %>" class="flex flex-col gap-2 w-full p-2 bg-red-50 rounded-md">
     <%= turbo_frame_tag "editable_section_post_#{post.id}" do %>
-        <%= render "post_header", post: post %>
+        <%= render "posts/post_header", post: post %>
         
         <div>
             <%= post.body %>

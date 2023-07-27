@@ -1,5 +1,5 @@
 <div id="invitation_<%= invitation.id %>" class="h-20 flex items-center p-2">
-    <%= link_to friend, class: "h-full flex items-center gap-2 p-2 hover:bg-red-200 focus:bg-red-100 rounded-md" do %>
+    <%= link_to friend, data: { turbo_frame: "_top" }, class: "h-full flex items-center gap-2 p-2 hover:bg-red-200 focus:bg-red-100 rounded-md" do %>
         <%= image_tag friend.profile_photo, alt: "Profile photo", class: "w-12 h-12 rounded-full" %>
         <p class="font-medium"><%= "#{friend.first_name} #{friend.last_name}" %></p>
     <% end %>
