@@ -1,0 +1,3 @@
+<% if current_user.pending_invitations.any? %>
+    <span id="pending-counter" class="text-sm text-red-500"><%= current_user.pending_invitations.count %> pending</span>
+<% end %>

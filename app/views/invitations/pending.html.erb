@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "people-options" do %>
+    <% @pending_invitations.each do |invitation| %>
+        <%= render "posts/people_region/pending_invitation", invitation: invitation %>
+    <% end %>
+<% end %>

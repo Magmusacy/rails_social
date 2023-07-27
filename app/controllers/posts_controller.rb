@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all.includes(:author, :comments).order(created_at: :desc)
+    @posts = Post.includes(:author, :likes, comments: [:likes]).order(created_at: :desc).all
   end
 
   def show

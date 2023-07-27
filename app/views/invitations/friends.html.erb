@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "people-options" do %>
+    <% @friends.each do |friend| %>
+        <% invitation = @invitations.find { |inv| inv.contains?(friend) } %>
+
+        <%= render "posts/people_region/friend", friend: friend, invitation: invitation %>
+    <% end %>
+<% end %>

@@ -1,9 +1,3 @@
 <%= turbo_stream.update "suggested_friend_#{@friend.id}" do %>
-    <%= render "shared/cancel_friend_request", friend: @friend %>
-<% end %>
-
-<%= turbo_stream.replace "templates" do %>
-        <div id="templates">
-        <%= render "posts/people_region/templates" %>
-    </div>
+    <%= render "shared/cancel_friend_request", friend: @friend, invitation: @invitation %>
 <% end %>

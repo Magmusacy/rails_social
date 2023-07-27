@@ -1,17 +1,14 @@
-<%# If the user has sent friend request to current user his request is in pending so it shouldn't be showed in suggestions %>
-<% unless Invitation.find_invitation(current_user.id, suggested_friend.id)&.take&.friend == current_user %>
-    <div class="h-20 flex items-center p-2">
-        <%= link_to suggested_friend, class: "h-full flex items-center gap-2 p-2 hover:bg-red-200 focus:bg-red-100 rounded-md" do %>
-            <%= image_tag suggested_friend.profile_photo, alt: "Profile photo", class: "w-12 h-12 rounded-full" %>
-            <p class="font-medium"><%= "#{suggested_friend.first_name} #{suggested_friend.last_name}" %></p>
-        <% end %>
+<div class="h-20 flex items-center p-2">
+    <%= link_to suggested_friend, class: "h-full flex items-center gap-2 p-2 hover:bg-red-200 focus:bg-red-100 rounded-md" do %>
+        <%= image_tag suggested_friend.profile_photo, alt: "Profile photo", class: "w-12 h-12 rounded-full" %>
+        <p class="font-medium"><%= "#{suggested_friend.first_name} #{suggested_friend.last_name}" %></p>
+    <% end %>
 
-        <div id="suggested_friend_<%= suggested_friend.id %>" class="h-full flex items-center ml-auto">
-            <% if Invitation.find_invitation(current_user.id, suggested_friend.id).empty? %>
-                <%= render "shared/add_friend_button", friend: suggested_friend %>
-            <% else %>
-                <%= render "shared/cancel_friend_request", friend: suggested_friend %>
-            <% end %>
-        </div>
+    <div id="suggested_friend_<%= suggested_friend.id %>" class="h-full flex items-center ml-auto">
+        <% unless invitation %>
+            <%= render "shared/add_friend_button", friend: suggested_friend %>
+        <% else %>
+            <%= render "shared/cancel_friend_request", friend: suggested_friend, invitation: invitation %>
+        <% end %>
     </div>
-<% end %>
+</div>

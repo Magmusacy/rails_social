@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "people-options" do %>
+    <% @suggested_friends.each do |suggested_friend| %>
+        <% invitation = @invitations.find { |inv| inv[:friend_id] == suggested_friend.id } %>
+        
+        <%= render "posts/people_region/suggested_friend", suggested_friend: suggested_friend, invitation: invitation %>
+    <% end %>
+<% end %>

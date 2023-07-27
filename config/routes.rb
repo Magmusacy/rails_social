@@ -3,7 +3,14 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resources :users, only: [:show, :index]
-  resources :invitations, only: [:create, :destroy, :update]
+  resources :invitations, only: [:create, :destroy, :update] do
+    collection do  
+      get "friends"
+      get "suggested"
+      get "pending"
+    end
+  end
+  
   root "posts#index"
   
   resources :posts do 

@@ -9,10 +9,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :invitations, dependent: :destroy
-  # Shows this user's pending invitations (send by others)
+  # Shows this user's pending invitations (sent by others)
   has_many :pending_invitations, -> { where(confirmed: false) }, class_name: "Invitation", foreign_key: "friend_id", dependent: :destroy
-  has_many :liked_posts, -> { where(likeable_type: "post") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
-  has_many :liked_comments, -> { where(likeable_type: "comment") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
+  has_many :liked_posts, -> { where(likeable_type: "Post") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
+  has_many :liked_comments, -> { where(likeable_type: "Comment") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
 
   def friends
     user_friends = Invitation.where(user_id: self.id).where(confirmed: true).pluck(:friend_id)
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def suggested_friends
-    User.where.not(id: friends).where.not(id: id)
+    User.where.not(id: friends).where.not(id: id).where.not(id: pending_invitations.pluck(:user_id))
   end
   
   def profile_photo

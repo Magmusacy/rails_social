@@ -7,7 +7,7 @@
 <% end %>
 
 <div id="like-region-<%= "#{likeable.class.name.downcase}-#{likeable.id}" %>">
-    <% if Like.like_exists?(likeable, current_user) %>
+    <% if likeable.likes.pluck(:user_id).include?(current_user.id) %>
         <%= render "likes/unlike", likeable: likeable, button_class: button_class, icon_size: icon_size %>
     <% else %>
         <%= render "likes/like", likeable: likeable, button_class: button_class, icon_size: icon_size %>
