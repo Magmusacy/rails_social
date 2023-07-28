@@ -1,10 +1,9 @@
-<div class="w-[calc(100%-1rem)] h-[50vh] bg-red-50 drop-shadow-md rounded-md">
-    <div class="w-[900px] mx-auto h-full ">
+<div class="w-full h-[50vh] bg-red-50 drop-shadow-md rounded-md">
+    <div class="w-[900px] h-full mx-auto">
         <div class="h-3/5 bg-gradient-to-b from-red-50 to-slate-500 rounded-md"></div>
         <div class="flex px-6">
             <%= image_tag @user.profile_photo, alt: "Profile photo", class:"w-36 h-36 relative -top-8 rounded-full border-4 border-red-50" %>
             
-            <%# User info %>
             <div class="pl-2 pt-6">
                 <p class="font-semibold text-xl"><%= "#{@user.first_name} #{@user.last_name}" %></p>
             </div>
@@ -19,7 +18,8 @@
     </div>
 </div>
 
-<div class="w-[600px]">
+
+<div class="w-[600px] row-start-2 mx-auto">
     <%= turbo_frame_tag "posts", class: "flex flex-col gap-2 mt-2" do %>
         <%= render @user.posts %>
     <% end %>
