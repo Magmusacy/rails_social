@@ -1,6 +1,8 @@
 require 'digest/md5'
 
 class User < ApplicationRecord
+  before_save :capitalize_name
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -28,5 +30,12 @@ class User < ApplicationRecord
     email_address = email.downcase
     hash = Digest::MD5.hexdigest(email_address)
     "https://www.gravatar.com/avatar/#{hash}" 
+  end
+
+  private
+
+  def capitalize_name
+    first_name.capitalize!
+    last_name.capitalize!
   end
 end
