@@ -33,7 +33,7 @@
       <% end %>
     </header>
 
-    <main class="grid grid-cols-[1fr_600px_1fr_400px] mt-2">
+    <main class="<%= content_for?(:main_styles) ? yield(:main_styles) : "grid grid-cols-[1fr_600px_1fr_400px] mt-2" %>">
       <%= yield %>
     </main>
   </body>

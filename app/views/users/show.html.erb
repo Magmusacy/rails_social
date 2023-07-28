@@ -18,9 +18,15 @@
     </div>
 </div>
 
+<div class="grid grid-cols-[300px_1fr_600px_1fr] w-full">
+    <div class="sticky top-0 p-2 rounded-md bg-red-50 drop-shadow-md overflow-y-scroll">
+        <p class="px-4 text-2xl font-semibold">Friends</p>
+        <%= render partial: "friend", collection: @user.friends %>
+    </div>
 
-<div class="w-[600px] row-start-2 mx-auto">
-    <%= turbo_frame_tag "posts", class: "flex flex-col gap-2 mt-2" do %>
-        <%= render @user.posts %>
-    <% end %>
+    <div class="col-start-3">
+        <div id="posts" class="flex flex-col gap-2">
+            <%= render @user.posts %>
+        </div>
+    </div>
 </div>
