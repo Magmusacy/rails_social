@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, 
-         :omniauthable, omniauth_providers: %i[github]
+         :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -17,10 +17,16 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      if auth.provider == "google_oauth2"
+        user.first_name = auth.info.first_name
+        user.last_name = auth.info.last_name
+      else
+        user.first_name = auth.info.name
+        user.last_name = nil
+      end
+
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.first_name = auth.info.name
-      user.last_name = nil
       user.image = auth.info.image 
     end
   end
