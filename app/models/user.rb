@@ -2,11 +2,10 @@ require 'digest/md5'
 
 class User < ApplicationRecord
   before_save :capitalize_name
-  
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, 
+         :omniauthable, omniauth_providers: %i[github]
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -15,6 +14,16 @@ class User < ApplicationRecord
   has_many :pending_invitations, -> { where(confirmed: false) }, class_name: "Invitation", foreign_key: "friend_id", dependent: :destroy
   has_many :liked_posts, -> { where(likeable_type: "Post") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
   has_many :liked_comments, -> { where(likeable_type: "Comment") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
+
+  def self.from_omniauth(auth)
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.name
+      user.last_name = nil
+      user.image = auth.info.image 
+    end
+  end
 
   def friends
     user_friends = Invitation.where(user_id: self.id).where(confirmed: true).pluck(:friend_id)
@@ -27,6 +36,7 @@ class User < ApplicationRecord
   end
   
   def profile_photo
+    return image if image
     email_address = email.downcase
     hash = Digest::MD5.hexdigest(email_address)
     "https://www.gravatar.com/avatar/#{hash}" 
@@ -35,7 +45,11 @@ class User < ApplicationRecord
   private
 
   def capitalize_name
-    first_name.capitalize!
-    last_name.capitalize!
+    first_name&.capitalize!
+    last_name&.capitalize!
+  end
+
+  def email_required?
+    provider.blank?
   end
 end
