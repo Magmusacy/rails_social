@@ -18,7 +18,7 @@ class Post < ApplicationRecord
 
     acceptable_types = ["image/jpeg", "image/png"]
     unless acceptable_types.include?(image.content_type)
-      errors.add(image, "must be a JPEG or PNG")
+      errors.add(:image, "must be a JPEG or PNG")
     end
   end
 end
