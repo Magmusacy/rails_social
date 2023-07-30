@@ -5,8 +5,13 @@ class InvitationsController < ApplicationController
 
         respond_to do |format|
             if @invitation.save
-                format.turbo_stream
-                format.html { redirect_to root_path }
+                if params.has_key?(:user_profile)
+                    user = User.find(params[:user_profile])
+                    format.html { redirect_to user }
+                else
+                    format.turbo_stream
+                    format.html { redirect_to root_path }
+                end
             else
                 format.html { redirect_to root_path }
             end
@@ -15,12 +20,16 @@ class InvitationsController < ApplicationController
 
     def update
         @invitation = Invitation.find_invitation(params[:inviting_user_id], current_user.id).take
-        @invitation.confirmed = true
-
+        
         respond_to do |format|
-            if @invitation.save
-                format.turbo_stream
-                format.html { redirect_to root_path }
+            if @invitation.update_attribute(:confirmed, true)
+                if params.has_key?(:user_profile)
+                    user = User.find(params[:user_profile])
+                    format.html { redirect_to user }
+                else
+                    format.turbo_stream
+                    format.html { redirect_to root_path }
+                end
             else
                 format.html { redirect_to root_path }
             end
@@ -33,8 +42,13 @@ class InvitationsController < ApplicationController
         @invitation.destroy
 
         respond_to do |format|
-            format.turbo_stream 
-            format.html { redirect_to root_path }
+            if params.has_key?(:user_profile)
+                user = User.find(params[:user_profile])
+                format.html { redirect_to user }
+            else
+                format.turbo_stream 
+                format.html { redirect_to root_path }
+            end
         end
     end
 
