@@ -1,7 +1,11 @@
 <div class="flex gap-2 items-center drop-shadow-md">
-    <%= image_tag post.author.profile_photo, alt: "Profile photo", class: "w-16 h-16 rounded-full" %>
+    <%= link_to post.author, data: { turbo_frame: "_top" } do %>
+        <%= image_tag post.author.profile_photo, alt: "Profile photo", class: "w-16 h-16 rounded-full" %>
+    <% end %>
     <div>
-        <p class="text-base font-semibold"><%= "#{post.author.first_name} #{post.author.last_name}" %></p>
+        <%= link_to post.author, data: { turbo_frame: "_top" } do %>
+            <p class="text-base font-semibold"><%= "#{post.author.first_name} #{post.author.last_name}" %></p>
+        <% end %>
         <p class="text-sm text-slate-500"><%= "#{time_ago_in_words(post.created_at)} ago" %></p>
     </div>
 </div>
