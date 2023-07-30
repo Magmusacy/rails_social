@@ -19,9 +19,11 @@
 </div>
 
 <div class="grid grid-cols-[300px_1fr_600px_1fr] w-full">
-    <div class="sticky top-0 p-2 rounded-md bg-red-50 drop-shadow-md overflow-y-scroll">
-        <p class="px-4 text-2xl font-semibold">Friends</p>
-        <%= render partial: "friend", collection: @user.friends %>
+    <div>
+        <div class="sticky top-[calc(5vh_+_0.5rem)] h-screen p-2 rounded-md bg-red-50 drop-shadow-md overflow-y-scroll">
+            <p class="px-4 text-2xl font-semibold">Friends</p>
+            <%= render partial: "friend", collection: @user.friends %>
+        </div>
     </div>
 
     <div class="col-start-3">
