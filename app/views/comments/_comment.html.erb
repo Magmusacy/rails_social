@@ -1,7 +1,14 @@
 <div id="comment_<%= comment.id %>" class="py-2">
     <div class="flex items-center gap-2 drop-shadow-md">
-        <%= image_tag comment.author.profile_photo, alt: "Profile photo", class: "w-6 h-6 rounded-full" %>
-        <p class="text-sm font-semibold"><%= "#{comment.author.first_name} #{comment.author.last_name}" %></p>
+        <%= link_to comment.author, data: { turbo_frame: "_top" } do %>
+            <%= image_tag comment.author.profile_photo, alt: "Profile photo", class: "w-6 h-6 rounded-full" %>
+        <% end %>
+
+        <%= link_to comment.author, data: { turbo_frame: "_top" } do %>
+            <p class="text-sm font-semibold"><%= "#{comment.author.first_name} #{comment.author.last_name}" %></p>
+        <% end %>
+
+        <p class="text-sm text-slate-500"><%= "#{time_ago_in_words(comment.created_at)} ago" %></p>
     </div>
 
     <div>
