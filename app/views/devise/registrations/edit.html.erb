@@ -32,6 +32,8 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
+    <%# Skip passwords if user is registered via OAuth %>
+    <% if resource.provider.blank? %>
     <div class="field">
       <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
       <%= f.password_field :password, autocomplete: "new-password", placeholder: " ", class: "w-full devise_input_field" %>
@@ -46,11 +48,11 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: " ", class: "w-full devise_input_field" %>
     </div>
 
-    <%# this is not gonna work if the user is signed in via oauth solution %>
-    <div class="field col-span-2">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: " ", class: "w-full devise_input_field" %>
-    </div>
+      <div class="field col-span-2">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: " ", class: "w-full devise_input_field" %>
+      </div>
+    <% end %>
 
     <div class="col-span-2">
         <%= render "devise/shared/error_messages", resource: resource %>
