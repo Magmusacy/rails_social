@@ -2,18 +2,19 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="form"
 export default class extends Controller {
-  static targets = [ "textArea" ]
+  static targets = [ "textArea", "fileField" ]
 
   clear() {
     this.textAreaTarget.value = ""
+    this.fileFieldTarget.value = ""
   }
 
   preventEmpty(event) {
-    if (this.textAreaTarget.value) {
-      return
+    if (this.textAreaTarget.value === "" && this.fileFieldTarget.value === "") {
+      event.preventDefault()
     } 
     else {
-      event.preventDefault()
+      return
     }
   }
 }

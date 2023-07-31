@@ -4,7 +4,7 @@
         
         <div class="p-3">
             <%= form.label :image, "Upload image", class: "block mb-2 text-sm font-medium text-black" %>
-            <%= form.file_field :image, class: "p-1 block w-full text-sm text-gray-900 border-0 rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-red-100 placeholder-gray-400" %>
+            <%= form.file_field :image, data: { form_target: "fileField" }, class: "p-1 block w-full text-sm text-gray-900 border-0 rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-red-100 placeholder-gray-400" %>
             <p class="mt-1 text-sm text-slate-800">PNG, JPG (MAX. 1MB).</p>
         </div>
 

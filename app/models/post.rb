@@ -4,10 +4,16 @@ class Post < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_one_attached :image
 
-  validates :body, presence: true
+  validate :must_contain_image_or_body
   validate :acceptable_image
 
   private
+
+  def must_contain_image_or_body
+    if image.attached? == false && body.nil?
+      errors.add(:base, "Image or body must be present")
+    end
+  end
 
   def acceptable_image
     return unless image.attached?
