@@ -2,15 +2,17 @@
     <%= turbo_frame_tag "editable_section_post_#{post.id}" do %>
         <%= render "posts/post_header", post: post %>
         
-        <div>
-            <%= post.body %>
-        </div>
+        <% unless post.body.nil? %>
+            <div class="py-2">
+                <%= post.body %>
+            </div>
+        <% end %>
 
-        <div>
-            <% if post.image.attached? %>
-                <%= image_tag post.image %>
-            <% end %>
-        </div>
+        <% if post.image.attached? %>
+            <div class="py-2">
+                <%= image_tag post.image, class: "rounded-sm" %>
+            </div>
+        <% end %>
 
         <%= render "likes/like_counter", likeable: post %>
 
