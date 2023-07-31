@@ -15,7 +15,7 @@ class LikesController < ApplicationController
     end
 
     def destroy
-        @like = Like.find(params[:id])
+        @like = current_user.likes.find(params[:id])
         @likeable = @like.likeable_type.constantize.find(@like.likeable_id)
         @like.destroy   
 

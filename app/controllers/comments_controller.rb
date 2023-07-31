@@ -12,12 +12,12 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id])
+        @comment = current_user.comments.find(params[:id])
         @comment.destroy
 
         respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to root_path }
+            format.turbo_stream
+            format.html { redirect_to root_path }
         end
     end
 

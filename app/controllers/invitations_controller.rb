@@ -37,7 +37,7 @@ class InvitationsController < ApplicationController
     end
 
     def destroy
-        @invitation = Invitation.find(params[:id])
+        @invitation = current_user.invitations.find(params[:id])
         @friend = @invitation.friend
         @invitation.destroy
 

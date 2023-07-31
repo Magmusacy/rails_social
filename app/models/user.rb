@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :invitations, dependent: :destroy
   # Shows this user's pending invitations (sent by others)
   has_many :pending_invitations, -> { where(confirmed: false) }, class_name: "Invitation", foreign_key: "friend_id", dependent: :destroy
+  has_many :likes, class_name: "Like", foreign_key: "user_id", dependent: :destroy
   has_many :liked_posts, -> { where(likeable_type: "Post") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
   has_many :liked_comments, -> { where(likeable_type: "Comment") }, class_name: "Like", foreign_key: "user_id",  dependent: :destroy
   has_one_attached :avatar
