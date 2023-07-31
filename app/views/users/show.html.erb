@@ -1,6 +1,11 @@
 <div class="w-full h-[50vh] bg-red-50 drop-shadow-md rounded-md">
     <div class="w-[900px] h-full mx-auto">
-        <div class="h-3/5 bg-gradient-to-b from-red-50 to-slate-500 rounded-md"></div>
+        <div class="w-full h-3/5 bg-gradient-to-b from-red-200 to-red-400 rounded-md">
+            <% if @user.background_photo.attached? %>
+                <%= image_tag @user.background_photo, alt: "Background photo", class:"w-full h-full rounded-md" %>
+            <% end %>
+        </div>
+
         <div class="flex px-6">
             <%= image_tag @user.profile_photo, alt: "Profile photo", class:"w-36 h-36 relative -top-8 rounded-full border-4 border-red-50" %>
             

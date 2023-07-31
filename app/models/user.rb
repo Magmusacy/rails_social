@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :background_photo
 
+  validate :validate_attachments
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       if auth.provider == "google_oauth2"
@@ -44,6 +46,7 @@ class User < ApplicationRecord
   end
   
   def profile_photo
+    return avatar if avatar.attached?
     return image if image
     email_address = email.downcase
     hash = Digest::MD5.hexdigest(email_address)
@@ -59,5 +62,23 @@ class User < ApplicationRecord
 
   def email_required?
     provider.blank?
+  end
+
+  def validate_attachments
+    validate_attachment(avatar)
+    validate_attachment(background_photo)
+  end
+
+  def validate_attachment(attachment)
+    return unless attachment.attached?
+
+    unless attachment.blob.byte_size <= 1.megabyte
+      errors.add(:attachment.name.capitalize, "is too big")
+    end
+
+    acceptable_types = ["image/jpeg", "image/png"]
+    unless acceptable_types.include?(attachment.content_type)
+      errors.add(:"#{attachment.name.capitalize}", "must be a JPEG or PNG")
+    end
   end
 end
