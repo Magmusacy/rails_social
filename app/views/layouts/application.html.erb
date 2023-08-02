@@ -12,14 +12,17 @@
   </head>
 
   <body class="bg-red-400 font-sans text-lg">
-    <header class="h-[5vh] sticky top-0 flex bg-red-300 z-10 items-center px-1">
+    <header class="h-[5vh] gap-2 sticky top-0 flex bg-red-300 z-10 items-center px-1">
       <% if user_signed_in? %>
         <%= link_to root_path, class: "h-4/5 w-[200px] rounded-lg flex items-center justify-center hover:bg-red-100 active:bg-red-50" do %>
           <h2 class="font-bold text-3xl tracking-tight"><span class="text-red-600">Rails</span> Social</h2>
         <% end %>
-        
+
+        <div id="flash" class="grow">
+          <%= render "shared/flash" %>
+        </div>
+
         <div class="h-full flex items-center ml-auto gap-x-2 pr-2">
-            <%# This will redirect to user profile in the future %>
             <%= link_to current_user, class: "h-4/5 flex items-center gap-2 hover:bg-red-200 focus:bg-red-100 rounded-full pl-2" do %>
               <p class="font-semibold text-xl"><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
               <%= image_tag current_user.profile_photo, alt: "Profile photo", class: "w-10 h-10 rounded-full" %>

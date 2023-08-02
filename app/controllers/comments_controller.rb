@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
             if @comment.save
                 format.turbo_stream
             else
-                redirect_to root_path
+                flash[:alert] = @post.errors.full_messages.join(" ")
+                format.html { redirect_to root_path }
             end
         end
     end

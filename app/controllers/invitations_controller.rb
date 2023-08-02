@@ -13,6 +13,7 @@ class InvitationsController < ApplicationController
                     format.html { redirect_to root_path }
                 end
             else
+                flash[:alert] = @post.errors.full_messages.join(" ")
                 format.html { redirect_to root_path }
             end
         end
@@ -31,6 +32,7 @@ class InvitationsController < ApplicationController
                     format.html { redirect_to root_path }
                 end
             else
+                flash[:alert] = @post.errors.full_messages.join(" ")
                 format.html { redirect_to root_path }
             end
         end        

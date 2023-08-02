@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post
     else
+      flash[:alert] = @post.errors.full_messages.join(" ")
       redirect_to root_path
     end
   end
@@ -27,7 +28,8 @@ class PostsController < ApplicationController
       if @post.save 
         format.turbo_stream
       else
-        redirect_to root_url
+        flash[:alert] = @post.errors.full_messages.join(" ")
+        format.html { redirect_to root_path }
       end
     end
   end

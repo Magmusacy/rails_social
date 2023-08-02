@@ -14,9 +14,9 @@
   <body class="bg-red-400 font-sans text-lg">
   
     <header class="block h-[5vh]">
-      <% flash.each do |k, v| %>
-        <p><%= v %></p>
-      <% end %>
+      <div class="p-2">
+        <%= render "shared/flash" %>      
+      </div>
     </header>
 
     <main class="h-[95vh]">
