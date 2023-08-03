@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= favicon_link_tag 'favicon_logo.png' %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -15,7 +16,7 @@
     <header class="h-[5vh] gap-2 sticky top-0 flex bg-red-300 z-10 items-center px-1">
       <% if user_signed_in? %>
         <%= link_to root_path, class: "h-4/5 w-[200px] rounded-lg flex items-center justify-center hover:bg-red-100 active:bg-red-50" do %>
-          <h2 class="font-bold text-3xl tracking-tight"><span class="text-red-600">Rails</span> Social</h2>
+          <%= image_tag "logo.png" %>
         <% end %>
 
         <div id="flash" class="grow">
