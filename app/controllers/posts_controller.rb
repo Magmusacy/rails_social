@@ -29,7 +29,6 @@ class PostsController < ApplicationController
         format.turbo_stream
       else
         flash[:alert] = @post.errors.full_messages.join(" ")
-        format.html { redirect_to root_path }
       end
     end
   end
@@ -39,7 +38,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to root_path }
     end
   end
 

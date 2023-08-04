@@ -10,7 +10,6 @@ class InvitationsController < ApplicationController
                     format.html { redirect_to user }
                 else
                     format.turbo_stream
-                    format.html { redirect_to root_path }
                 end
             else
                 flash[:alert] = @post.errors.full_messages.join(" ")
@@ -29,7 +28,6 @@ class InvitationsController < ApplicationController
                     format.html { redirect_to user }
                 else
                     format.turbo_stream
-                    format.html { redirect_to root_path }
                 end
             else
                 flash[:alert] = @post.errors.full_messages.join(" ")
@@ -49,7 +47,6 @@ class InvitationsController < ApplicationController
                 format.html { redirect_to user }
             else
                 format.turbo_stream 
-                format.html { redirect_to root_path }
             end
         end
     end
